@@ -1,4 +1,4 @@
 # adftraining
 Azure Training
 
-Welcome to the Azure Data Factory Training
+Azure Data Factory Training Github Repository
