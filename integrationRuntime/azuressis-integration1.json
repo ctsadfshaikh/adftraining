@@ -1,0 +1,31 @@
+{
+	"name": "azuressis-integration1",
+	"properties": {
+		"type": "Managed",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "East US",
+				"nodeSize": "Standard_D4_v3",
+				"numberOfNodes": 2,
+				"maxParallelExecutionsPerNode": 4,
+				"vNetProperties": {
+					"vNetId": "/subscriptions/73f09882-599c-4112-bcba-2cf5e0c9a78f/resourceGroups/adf/providers/Microsoft.Network/virtualNetworks/shoaibvnet",
+					"subnet": "default"
+				}
+			},
+			"ssisProperties": {
+				"catalogInfo": {
+					"catalogServerEndpoint": "shoaibsqlserver.database.windows.net",
+					"catalogAdminUserName": "Student",
+					"catalogAdminPassword": {
+						"type": "SecureString",
+						"value": "**********"
+					},
+					"catalogPricingTier": "S1"
+				},
+				"edition": "Standard",
+				"licenseType": "BasePrice"
+			}
+		}
+	}
+}

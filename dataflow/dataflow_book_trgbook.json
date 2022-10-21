@@ -1,0 +1,61 @@
+{
+	"name": "dataflow_book_trgbook",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_book",
+						"type": "DatasetReference"
+					},
+					"name": "booksource"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_trgbook",
+						"type": "DatasetReference"
+					},
+					"name": "trgbooksink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "pricefilter"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     price as integer",
+				"}",
+				"source(output(",
+				"          bookid as integer,",
+				"          bookname as string,",
+				"          bookprice as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> booksource",
+				"booksource filter(bookprice>=$price) ~> pricefilter",
+				"pricefilter sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          bookid as integer,",
+				"          bookname as string,",
+				"          price as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> trgbooksink"
+			]
+		}
+	}
+}

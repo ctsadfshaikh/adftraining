@@ -1,0 +1,36 @@
+{
+	"name": "ds_tableemp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_tableemp",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "eid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ename",
+				"type": "varchar"
+			},
+			{
+				"name": "salary",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dname",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dim_emp1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
