@@ -1,0 +1,133 @@
+{
+	"name": "df_dept_emp",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_dept",
+						"type": "DatasetReference"
+					},
+					"name": "dept"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_emp",
+						"type": "DatasetReference"
+					},
+					"name": "emp"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_tableemp",
+						"type": "DatasetReference"
+					},
+					"name": "Tableemp"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_tabledept",
+						"type": "DatasetReference"
+					},
+					"name": "Tabledept"
+				}
+			],
+			"transformations": [
+				{
+					"name": "deptderivedColumn"
+				},
+				{
+					"name": "renamingempfields"
+				},
+				{
+					"name": "join"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          did as integer,",
+				"          dname as string,",
+				"          revenue as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dept",
+				"source(output(",
+				"          eid as integer,",
+				"          ename as string,",
+				"          Salary as integer,",
+				"          did as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> emp",
+				"dept derive(Tgt_revenue = revenue+(revenue*20/100),",
+				"          dname = initCap(dname)) ~> deptderivedColumn",
+				"emp select(mapColumn(",
+				"          empid = eid,",
+				"          empname = ename,",
+				"          eSalary = Salary,",
+				"          did",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> renamingempfields",
+				"renamingempfields, deptderivedColumn join(renamingempfields@did == dept@did,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join",
+				"join sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          eid as integer,",
+				"          ename as string,",
+				"          salary as integer,",
+				"          dname as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     truncate:true,",
+				"     format: 'table',",
+				"     staged: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          eid = empid,",
+				"          ename = empname,",
+				"          salary = eSalary,",
+				"          dname",
+				"     )) ~> Tableemp",
+				"deptderivedColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          dept_id as integer,",
+				"          dname as string,",
+				"          Totalrevenue as integer,",
+				"          tragetrevenue as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     truncate:true,",
+				"     format: 'table',",
+				"     staged: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          dept_id = did,",
+				"          dname,",
+				"          Totalrevenue = revenue,",
+				"          tragetrevenue = Tgt_revenue",
+				"     )) ~> Tabledept"
+			]
+		}
+	}
+}

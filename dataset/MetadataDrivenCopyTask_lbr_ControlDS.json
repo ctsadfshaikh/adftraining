@@ -1,0 +1,19 @@
+{
+	"name": "MetadataDrivenCopyTask_lbr_ControlDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_md_driven",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "MetadataDrivenCopyTask_lbr_20221010"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": "MainControlTable_lbr"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

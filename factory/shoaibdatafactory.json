@@ -1,0 +1,9 @@
+{
+	"name": "shoaibdatafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2f37c802-3eaf-4d05-a6d4-4ef7e432701d",
+		"tenantId": "271c79d5-6617-45a3-a5ce-d295fe3a5fa7"
+	}
+}
