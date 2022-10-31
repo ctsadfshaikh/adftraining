@@ -2,7 +2,7 @@
 	"name": "ds_input",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_input_data",
+			"referenceName": "ls_container_input",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
