@@ -1,0 +1,242 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "shoaibdatafactory"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"ls_azuredatabricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_azuredatabricks'"
+		},
+		"ls_azuredb_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azuredb'"
+		},
+		"ls_booksource_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_booksource'"
+		},
+		"ls_input_data_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_input_data'"
+		},
+		"ls_md_driven_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_md_driven'"
+		},
+		"ls_mdatadriven_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_mdatadriven'"
+		},
+		"ls_table_data_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_table_data'"
+		},
+		"ls_tabledept_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_tabledept'"
+		},
+		"ls_tableemp_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_tableemp'"
+		},
+		"ls_trgbook_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_trgbook'"
+		},
+		"sourcedatalake_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'sourcedatalake'"
+		},
+		"sqldb2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqldb2'"
+		},
+		"targetsqldatabase_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'targetsqldatabase'"
+		},
+		"ls_bs_practice_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_bs_practice'"
+		},
+		"ls_sqldb_practice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sqldb_practice'"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://shoaibdatalake.dfs.core.windows.net/"
+		},
+		"ls_input_data_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://shoaibdatalake.dfs.core.windows.net/"
+		},
+		"sourcedatalake_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://shoaibdatalake.dfs.core.windows.net/"
+		},
+		"azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"type": "string",
+			"defaultValue": "shoaibsqlserver.database.windows.net"
+		},
+		"azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"type": "string",
+			"defaultValue": "Student"
+		},
+		"azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"type": "secureString"
+		},
+		"ls_bs_practice_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://shoaibdatalake.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "shoaibdatafactory_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
+					"ls_azuredatabricks_accessToken": {
+						"value": "[parameters('ls_azuredatabricks_accessToken')]"
+					},
+					"ls_azuredb_connectionString": {
+						"value": "[parameters('ls_azuredb_connectionString')]"
+					},
+					"ls_booksource_connectionString": {
+						"value": "[parameters('ls_booksource_connectionString')]"
+					},
+					"ls_input_data_accountKey": {
+						"value": "[parameters('ls_input_data_accountKey')]"
+					},
+					"ls_md_driven_connectionString": {
+						"value": "[parameters('ls_md_driven_connectionString')]"
+					},
+					"ls_mdatadriven_connectionString": {
+						"value": "[parameters('ls_mdatadriven_connectionString')]"
+					},
+					"ls_table_data_connectionString": {
+						"value": "[parameters('ls_table_data_connectionString')]"
+					},
+					"ls_tabledept_connectionString": {
+						"value": "[parameters('ls_tabledept_connectionString')]"
+					},
+					"ls_tableemp_connectionString": {
+						"value": "[parameters('ls_tableemp_connectionString')]"
+					},
+					"ls_trgbook_connectionString": {
+						"value": "[parameters('ls_trgbook_connectionString')]"
+					},
+					"sourcedatalake_accountKey": {
+						"value": "[parameters('sourcedatalake_accountKey')]"
+					},
+					"sqldb2_connectionString": {
+						"value": "[parameters('sqldb2_connectionString')]"
+					},
+					"targetsqldatabase_connectionString": {
+						"value": "[parameters('targetsqldatabase_connectionString')]"
+					},
+					"ls_bs_practice_accountKey": {
+						"value": "[parameters('ls_bs_practice_accountKey')]"
+					},
+					"ls_sqldb_practice_connectionString": {
+						"value": "[parameters('ls_sqldb_practice_connectionString')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"ls_input_data_properties_typeProperties_url": {
+						"value": "[parameters('ls_input_data_properties_typeProperties_url')]"
+					},
+					"sourcedatalake_properties_typeProperties_url": {
+						"value": "[parameters('sourcedatalake_properties_typeProperties_url')]"
+					},
+					"azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+						"value": "[parameters('azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]"
+					},
+					"azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+						"value": "[parameters('azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]"
+					},
+					"azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+						"value": "[parameters('azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
+					},
+					"ls_bs_practice_properties_typeProperties_url": {
+						"value": "[parameters('ls_bs_practice_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "shoaibdatafactory_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'shoaibdatafactory_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "shoaibdatafactory_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'shoaibdatafactory_ArmTemplate_1')]"
+			]
+		}
+	]
+}

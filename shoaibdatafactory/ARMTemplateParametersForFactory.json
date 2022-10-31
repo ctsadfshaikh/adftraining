@@ -1,0 +1,78 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "shoaibdatafactory"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"ls_azuredatabricks_accessToken": {
+			"value": ""
+		},
+		"ls_azuredb_connectionString": {
+			"value": ""
+		},
+		"ls_booksource_connectionString": {
+			"value": ""
+		},
+		"ls_input_data_accountKey": {
+			"value": ""
+		},
+		"ls_md_driven_connectionString": {
+			"value": ""
+		},
+		"ls_mdatadriven_connectionString": {
+			"value": ""
+		},
+		"ls_table_data_connectionString": {
+			"value": ""
+		},
+		"ls_tabledept_connectionString": {
+			"value": ""
+		},
+		"ls_tableemp_connectionString": {
+			"value": ""
+		},
+		"ls_trgbook_connectionString": {
+			"value": ""
+		},
+		"sourcedatalake_accountKey": {
+			"value": ""
+		},
+		"sqldb2_connectionString": {
+			"value": ""
+		},
+		"targetsqldatabase_connectionString": {
+			"value": ""
+		},
+		"ls_bs_practice_accountKey": {
+			"value": ""
+		},
+		"ls_sqldb_practice_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://shoaibdatalake.dfs.core.windows.net/"
+		},
+		"ls_input_data_properties_typeProperties_url": {
+			"value": "https://shoaibdatalake.dfs.core.windows.net/"
+		},
+		"sourcedatalake_properties_typeProperties_url": {
+			"value": "https://shoaibdatalake.dfs.core.windows.net/"
+		},
+		"azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"value": "shoaibsqlserver.database.windows.net"
+		},
+		"azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"value": "Student"
+		},
+		"azuressis-integration1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"value": ""
+		},
+		"ls_bs_practice_properties_typeProperties_url": {
+			"value": "https://shoaibdatalake.dfs.core.windows.net/"
+		}
+	}
+}
