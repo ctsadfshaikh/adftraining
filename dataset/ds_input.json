@@ -1,10 +1,6 @@
 {
 	"name": "ds_input",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_container_input",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
