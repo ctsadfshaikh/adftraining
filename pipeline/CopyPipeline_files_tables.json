@@ -1,0 +1,106 @@
+{
+	"name": "CopyPipeline_files_tables",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_umg",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "data/Input/"
+					},
+					{
+						"name": "Destination",
+						"value": ".AzureBlobFSFile"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "did",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "did",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dname",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "dname",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "revenue",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "revenue",
+									"type": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_umg",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_umg",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

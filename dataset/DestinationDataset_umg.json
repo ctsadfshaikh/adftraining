@@ -1,0 +1,15 @@
+{
+	"name": "DestinationDataset_umg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "cpy_Sqldb_target",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": "AzureBlobFSFile"
+		}
+	}
+}
